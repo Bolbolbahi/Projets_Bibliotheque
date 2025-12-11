@@ -1,0 +1,8 @@
+Livre,Le Petit Prince,Antoine de Saint-Exupéry,True
+Livre,1984,George Orwell,True
+Livre,Harry Potter à l'école des sorciers,J.K. Rowling,False
+BD,Astérix et Obélix,René Goscinny,Albert Uderzo
+BD,Tintin au Tibet,Hergé,Hergé
+Dictionnaire,Larousse 2024,Éditions Larousse
+Journal,Le Monde,2024-12-10
+Journal,Le Figaro,2024-12-11
