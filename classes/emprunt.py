@@ -1,7 +1,5 @@
 """
 Module contenant la classe Emprunt
-Auteur: Votre Nom
-Date: 2024
 """
 
 from datetime import date, timedelta
@@ -16,12 +14,6 @@ class Emprunt:
     def __init__(self, adherent, livre, date_emprunt=None, date_retour=None):
         """
         Initialise un emprunt
-
-        Args:
-            adherent (Adherent): L'adhérent qui emprunte
-            livre (Livre): Le livre emprunté
-            date_emprunt (date): La date d'emprunt (aujourd'hui par défaut)
-            date_retour (date): La date de retour prévue (optionnel)
         """
         self._adherent = adherent
         self._livre = livre
@@ -61,9 +53,6 @@ class Emprunt:
     def prolonger_date_retour(self, jours=7):
         """
         Prolonge la date de retour prévue
-
-        Args:
-            jours (int): Nombre de jours de prolongation (7 par défaut)
         """
         if self._date_retour:
             self._date_retour += timedelta(days=jours)
@@ -74,18 +63,12 @@ class Emprunt:
     def calculer_date_retour_prevue(self):
         """
         Calcule la date de retour prévue
-
-        Returns:
-            date: Date de retour prévue
         """
         return self._date_emprunt + timedelta(days=self.DUREE_EMPRUNT_JOURS)
 
     def est_en_retard(self):
         """
         Vérifie si l'emprunt est en retard
-
-        Returns:
-            bool: True si en retard, False sinon
         """
         if self._date_retour:
             return False  # Déjà retourné
@@ -96,9 +79,6 @@ class Emprunt:
     def jours_retard(self):
         """
         Calcule le nombre de jours de retard
-
-        Returns:
-            int: Nombre de jours de retard (0 si pas de retard)
         """
         if not self.est_en_retard():
             return 0
@@ -109,19 +89,13 @@ class Emprunt:
 
     def est_actif(self):
         """
-        Vérifie si l'emprunt est toujours actif (livre non retourné)
-
-        Returns:
-            bool: True si actif, False si retourné
+        Vérifie si l'emprunt est toujours actif (livre non encore retourné)
         """
         return self._date_retour is None
 
     def to_csv(self):
         """
         Convertit l'emprunt en format CSV
-
-        Returns:
-            str: Représentation CSV de l'emprunt
         """
         adherent_id = self._adherent.get_identifiant()
         livre_titre = self._livre.titre
@@ -133,14 +107,6 @@ class Emprunt:
     def from_csv(csv_line, adherents_dict, livres_dict):
         """
         Crée un emprunt à partir d'une ligne CSV
-
-        Args:
-            csv_line (str): Ligne CSV (format: adherent_id,livre_titre,date_emprunt,date_retour)
-            adherents_dict (dict): Dictionnaire des adhérents {identifiant: Adherent}
-            livres_dict (dict): Dictionnaire des livres {titre: Livre}
-
-        Returns:
-            Emprunt: Instance de l'emprunt ou None si erreur
         """
         parts = csv_line.strip().split(',')
         if len(parts) >= 4:
@@ -170,7 +136,6 @@ class Emprunt:
         return None
 
     def __str__(self):
-        """Représentation textuelle de l'emprunt"""
         retour_info = f"retourné le {self._date_retour.strftime('%d/%m/%Y')}" if self._date_retour else "en cours"
         retard_info = f" (RETARD: {self.jours_retard()} jours)" if self.est_en_retard() else ""
 

@@ -1,7 +1,5 @@
 """
 Module contenant les classes Document et ses sous-classes
-Auteur: Votre Nom
-Date: 2024
 """
 
 from datetime import date
@@ -13,9 +11,6 @@ class Document:
     def __init__(self, titre):
         """
         Initialise un document
-
-        Args:
-            titre (str): Le titre du document
         """
         self._titre = titre
 
@@ -32,9 +27,6 @@ class Document:
     def to_csv(self):
         """
         Convertit le document en format CSV
-
-        Returns:
-            str: Représentation CSV du document
         """
         raise NotImplementedError("Méthode à implémenter dans les sous-classes")
 
@@ -42,17 +34,10 @@ class Document:
     def from_csv(csv_line):
         """
         Crée un document à partir d'une ligne CSV
-
-        Args:
-            csv_line (str): Ligne CSV à parser
-
-        Returns:
-            Document: Instance du document approprié
         """
         raise NotImplementedError("Méthode à implémenter dans les sous-classes")
 
     def __str__(self):
-        """Représentation textuelle du document"""
         return f"Document: {self._titre}"
 
 
@@ -62,10 +47,6 @@ class Volume(Document):
     def __init__(self, titre, auteur):
         """
         Initialise un volume
-
-        Args:
-            titre (str): Le titre du volume
-            auteur (str): Le nom de l'auteur
         """
         super().__init__(titre)
         self._auteur = auteur
@@ -91,11 +72,6 @@ class Livre(Volume):
     def __init__(self, titre, auteur, disponible=True):
         """
         Initialise un livre
-
-        Args:
-            titre (str): Le titre du livre
-            auteur (str): Le nom de l'auteur
-            disponible (bool): Si le livre est disponible pour emprunt
         """
         super().__init__(titre, auteur)
         self._disponible = disponible
@@ -113,9 +89,6 @@ class Livre(Volume):
     def emprunter(self):
         """
         Marque le livre comme emprunté
-
-        Returns:
-            bool: True si l'emprunt est possible, False sinon
         """
         if self._disponible:
             self._disponible = False
@@ -129,18 +102,12 @@ class Livre(Volume):
     def empruntable(self):
         """
         Vérifie si le livre peut être emprunté
-
-        Returns:
-            bool: True si disponible, False sinon
         """
         return self._disponible
 
     def to_csv(self):
         """
         Convertit le livre en format CSV
-
-        Returns:
-            str: Représentation CSV du livre
         """
         return f"Livre,{self._titre},{self._auteur},{self._disponible}"
 
@@ -148,12 +115,6 @@ class Livre(Volume):
     def from_csv(csv_line):
         """
         Crée un livre à partir d'une ligne CSV
-
-        Args:
-            csv_line (str): Ligne CSV (format: Livre,titre,auteur,disponible)
-
-        Returns:
-            Livre: Instance du livre
         """
         parts = csv_line.strip().split(',')
         if len(parts) >= 4:
@@ -162,7 +123,6 @@ class Livre(Volume):
         return None
 
     def __str__(self):
-        """Représentation textuelle du livre"""
         statut = "Disponible" if self._disponible else "Emprunté"
         return f"Livre: {self._titre} par {self._auteur} ({statut})"
 
@@ -173,11 +133,6 @@ class BD(Volume):
     def __init__(self, titre, auteur, dessinateur):
         """
         Initialise une BD
-
-        Args:
-            titre (str): Le titre de la BD
-            auteur (str): Le nom de l'auteur/scénariste
-            dessinateur (str): Le nom du dessinateur
         """
         super().__init__(titre, auteur)
         self._dessinateur = dessinateur
@@ -195,9 +150,6 @@ class BD(Volume):
     def to_csv(self):
         """
         Convertit la BD en format CSV
-
-        Returns:
-            str: Représentation CSV de la BD
         """
         return f"BD,{self._titre},{self._auteur},{self._dessinateur}"
 
@@ -205,12 +157,6 @@ class BD(Volume):
     def from_csv(csv_line):
         """
         Crée une BD à partir d'une ligne CSV
-
-        Args:
-            csv_line (str): Ligne CSV (format: BD,titre,auteur,dessinateur)
-
-        Returns:
-            BD: Instance de la BD
         """
         parts = csv_line.strip().split(',')
         if len(parts) >= 4:
@@ -218,7 +164,6 @@ class BD(Volume):
         return None
 
     def __str__(self):
-        """Représentation textuelle de la BD"""
         return f"BD: {self._titre} par {self._auteur} (dessin: {self._dessinateur})"
 
 
@@ -228,19 +173,12 @@ class Dictionnaire(Volume):
     def __init__(self, titre, auteur):
         """
         Initialise un dictionnaire
-
-        Args:
-            titre (str): Le titre du dictionnaire
-            auteur (str): Le nom de l'auteur/éditeur
         """
         super().__init__(titre, auteur)
 
     def to_csv(self):
         """
         Convertit le dictionnaire en format CSV
-
-        Returns:
-            str: Représentation CSV du dictionnaire
         """
         return f"Dictionnaire,{self._titre},{self._auteur}"
 
@@ -248,12 +186,6 @@ class Dictionnaire(Volume):
     def from_csv(csv_line):
         """
         Crée un dictionnaire à partir d'une ligne CSV
-
-        Args:
-            csv_line (str): Ligne CSV (format: Dictionnaire,titre,auteur)
-
-        Returns:
-            Dictionnaire: Instance du dictionnaire
         """
         parts = csv_line.strip().split(',')
         if len(parts) >= 3:
@@ -271,10 +203,6 @@ class Journal(Document):
     def __init__(self, titre, date_parution):
         """
         Initialise un journal
-
-        Args:
-            titre (str): Le titre du journal
-            date_parution (date): La date de parution
         """
         super().__init__(titre)
         self._date_parution = date_parution
@@ -292,9 +220,6 @@ class Journal(Document):
     def to_csv(self):
         """
         Convertit le journal en format CSV
-
-        Returns:
-            str: Représentation CSV du journal
         """
         date_str = self._date_parution.strftime('%Y-%m-%d')
         return f"Journal,{self._titre},{date_str}"
@@ -303,12 +228,6 @@ class Journal(Document):
     def from_csv(csv_line):
         """
         Crée un journal à partir d'une ligne CSV
-
-        Args:
-            csv_line (str): Ligne CSV (format: Journal,titre,date)
-
-        Returns:
-            Journal: Instance du journal
         """
         parts = csv_line.strip().split(',')
         if len(parts) >= 3:
@@ -318,5 +237,4 @@ class Journal(Document):
         return None
 
     def __str__(self):
-        """Représentation textuelle du journal"""
         return f"Journal: {self._titre} du {self._date_parution.strftime('%d/%m/%Y')}"

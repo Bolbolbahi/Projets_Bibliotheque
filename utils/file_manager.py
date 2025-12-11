@@ -44,12 +44,6 @@ class FileManager:
     def sauvegarder_adherents(adherents):
         """
         Sauvegarde les adhérents dans le fichier CSV
-
-        Args:
-            adherents (list): Liste des adhérents à sauvegarder
-
-        Returns:
-            bool: True si sauvegarde réussie
         """
         try:
             FileManager.initialiser_dossier_data()
@@ -65,12 +59,6 @@ class FileManager:
     def sauvegarder_documents(documents):
         """
         Sauvegarde les documents dans le fichier CSV
-
-        Args:
-            documents (list): Liste des documents à sauvegarder
-
-        Returns:
-            bool: True si sauvegarde réussie
         """
         try:
             FileManager.initialiser_dossier_data()
@@ -86,12 +74,6 @@ class FileManager:
     def sauvegarder_emprunts(emprunts):
         """
         Sauvegarde les emprunts dans le fichier CSV
-
-        Args:
-            emprunts (list): Liste des emprunts à sauvegarder
-
-        Returns:
-            bool: True si sauvegarde réussie
         """
         try:
             FileManager.initialiser_dossier_data()
@@ -107,12 +89,6 @@ class FileManager:
     def sauvegarder_bibliotheque(bibliotheque):
         """
         Sauvegarde toutes les données de la bibliothèque
-
-        Args:
-            bibliotheque (Bibliotheque): La bibliothèque à sauvegarder
-
-        Returns:
-            bool: True si sauvegarde complète réussie
         """
         success = True
         success &= FileManager.sauvegarder_adherents(bibliotheque.get_adherents())
@@ -126,9 +102,6 @@ class FileManager:
     def charger_adherents():
         """
         Charge les adhérents depuis le fichier CSV
-
-        Returns:
-            tuple: (liste des adhérents, dictionnaire {identifiant: adherent})
         """
         adherents = []
         adherents_dict = {}
@@ -152,9 +125,6 @@ class FileManager:
     def charger_documents():
         """
         Charge les documents depuis le fichier CSV
-
-        Returns:
-            tuple: (liste des documents, dictionnaire {titre: document})
         """
         documents = []
         documents_dict = {}
@@ -195,13 +165,6 @@ class FileManager:
     def charger_emprunts(adherents_dict, livres_dict):
         """
         Charge les emprunts depuis le fichier CSV
-
-        Args:
-            adherents_dict (dict): Dictionnaire des adhérents
-            livres_dict (dict): Dictionnaire des livres
-
-        Returns:
-            list: Liste des emprunts
         """
         emprunts = []
 
@@ -223,9 +186,6 @@ class FileManager:
     def charger_bibliotheque():
         """
         Charge toutes les données de la bibliothèque
-
-        Returns:
-            Bibliotheque: Instance de la bibliothèque avec toutes les données
         """
         from classes.bibliotheque import Bibliotheque
 

@@ -1,7 +1,5 @@
 """
 Module contenant la classe Adherent
-Auteur: Votre Nom
-Date: 2024
 """
 
 
@@ -9,14 +7,6 @@ class Adherent:
     """Classe représentant un adhérent de la bibliothèque"""
 
     def __init__(self, nom, prenom, email=""):
-        """
-        Initialise un adhérent
-
-        Args:
-            nom (str): Le nom de l'adhérent
-            prenom (str): Le prénom de l'adhérent
-            email (str): L'email de l'adhérent (optionnel)
-        """
         self._nom = nom
         self._prenom = prenom
         self._email = email
@@ -53,11 +43,7 @@ class Adherent:
 
     def emprunter_livre(self, livre):
         """
-        Emprunte un livre (méthode pour compatibilité avec le diagramme UML)
-
-        Args:
-            livre (Livre): Le livre à emprunter
-
+        Emprunte un livre
         Returns:
             bool: True si l'emprunt est réussi, False sinon
         """
@@ -67,28 +53,19 @@ class Adherent:
 
     def rendre_livre(self, livre):
         """
-        Rend un livre (méthode pour compatibilité avec le diagramme UML)
-
-        Args:
-            livre (Livre): Le livre à rendre
+        Rend un livre
         """
         livre.rendre()
 
     def get_identifiant(self):
         """
         Retourne un identifiant unique pour l'adhérent
-
-        Returns:
-            str: Identifiant au format "NOM_PRENOM"
         """
         return f"{self._nom}_{self._prenom}"
 
     def to_csv(self):
         """
         Convertit l'adhérent en format CSV
-
-        Returns:
-            str: Représentation CSV de l'adhérent
         """
         return f"{self._nom},{self._prenom},{self._email}"
 
@@ -96,12 +73,6 @@ class Adherent:
     def from_csv(csv_line):
         """
         Crée un adhérent à partir d'une ligne CSV
-
-        Args:
-            csv_line (str): Ligne CSV (format: nom,prenom,email)
-
-        Returns:
-            Adherent: Instance de l'adhérent
         """
         parts = csv_line.strip().split(',')
         if len(parts) >= 2:
@@ -118,12 +89,6 @@ class Adherent:
     def __eq__(self, other):
         """
         Compare deux adhérents
-
-        Args:
-            other (Adherent): Autre adhérent à comparer
-
-        Returns:
-            bool: True si les adhérents sont identiques
         """
         if not isinstance(other, Adherent):
             return False

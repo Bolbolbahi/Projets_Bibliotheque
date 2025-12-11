@@ -67,32 +67,32 @@ class BibliothequeGUI(QWidget):
         main_layout = QVBoxLayout()
 
         # Titre
-        titre = QLabel("📚 BIBLIOTHÈQUE - SYSTÈME DE GESTION 📚")
+        titre = QLabel("BIBLIOTHÈQUE - SYSTÈME DE GESTION")
         titre.setAlignment(Qt.AlignmentFlag.AlignCenter)
         titre.setStyleSheet("font-size: 24px; font-weight: bold; color: #2c3e50; padding: 15px;")
         main_layout.addWidget(titre)
 
         # Onglets
         tabs = QTabWidget()
-        tabs.addTab(self.create_adherents_tab(), "👥 Adhérents")
-        tabs.addTab(self.create_documents_tab(), "📖 Documents")
-        tabs.addTab(self.create_emprunts_tab(), "📋 Emprunts")
-        tabs.addTab(self.create_stats_tab(), "📊 Statistiques")
+        tabs.addTab(self.create_adherents_tab(), "Adhérents")
+        tabs.addTab(self.create_documents_tab(), "Documents")
+        tabs.addTab(self.create_emprunts_tab(), "Emprunts")
+        tabs.addTab(self.create_stats_tab(), "Statistiques")
 
         main_layout.addWidget(tabs)
 
         # Boutons d'action globaux
         btn_layout = QHBoxLayout()
 
-        btn_sauvegarder = QPushButton("💾 Sauvegarder")
+        btn_sauvegarder = QPushButton("Sauvegarder")
         btn_sauvegarder.clicked.connect(self.sauvegarder_donnees)
         btn_layout.addWidget(btn_sauvegarder)
 
-        btn_actualiser = QPushButton("🔄 Actualiser")
+        btn_actualiser = QPushButton("Actualiser")
         btn_actualiser.clicked.connect(self.actualiser_affichage)
         btn_layout.addWidget(btn_actualiser)
 
-        btn_quitter = QPushButton("❌ Quitter")
+        btn_quitter = QPushButton("Quitter")
         btn_quitter.setStyleSheet("background-color: #f44336;")
         btn_quitter.clicked.connect(self.close)
         btn_layout.addWidget(btn_quitter)
@@ -124,7 +124,7 @@ class BibliothequeGUI(QWidget):
         self.adh_email_input = QLineEdit()
         form_layout.addWidget(self.adh_email_input, 2, 1)
 
-        btn_ajouter = QPushButton("➕ Ajouter Adhérent")
+        btn_ajouter = QPushButton("Ajouter Adhérent")
         btn_ajouter.clicked.connect(self.ajouter_adherent)
         form_layout.addWidget(btn_ajouter, 3, 0, 1, 2)
 
@@ -200,7 +200,7 @@ class BibliothequeGUI(QWidget):
             self.adherents_table.setItem(i, 1, QTableWidgetItem(adh.prenom))
             self.adherents_table.setItem(i, 2, QTableWidgetItem(adh.email))
 
-            btn_suppr = QPushButton("🗑️ Supprimer")
+            btn_suppr = QPushButton("Supprimer")
             btn_suppr.setStyleSheet("background-color: #f44336;")
             btn_suppr.clicked.connect(lambda checked, a=adh: self.supprimer_adherent(a))
             self.adherents_table.setCellWidget(i, 3, btn_suppr)
@@ -244,7 +244,7 @@ class BibliothequeGUI(QWidget):
         self.doc_date_input.setCalendarPopup(True)
         form_layout.addWidget(self.doc_date_input, 4, 1)
 
-        btn_ajouter_doc = QPushButton("➕ Ajouter Document")
+        btn_ajouter_doc = QPushButton("Ajouter Document")
         btn_ajouter_doc.clicked.connect(self.ajouter_document)
         form_layout.addWidget(btn_ajouter_doc, 5, 0, 1, 2)
 
@@ -382,13 +382,13 @@ class BibliothequeGUI(QWidget):
             # Statut
             statut = ""
             if isinstance(doc, Livre):
-                statut = "✅ Disponible" if doc.disponible else "❌ Emprunté"
+                statut = "Disponible" if doc.disponible else "Emprunté"
             else:
-                statut = "📚 Consultation sur place"
+                statut = "Consultation sur place"
             self.documents_table.setItem(i, 3, QTableWidgetItem(statut))
 
             # Actions
-            btn_suppr = QPushButton("🗑️ Supprimer")
+            btn_suppr = QPushButton("️Supprimer")
             btn_suppr.setStyleSheet("background-color: #f44336;")
             btn_suppr.clicked.connect(lambda checked, d=doc: self.supprimer_document(d))
             self.documents_table.setCellWidget(i, 4, btn_suppr)
@@ -412,7 +412,7 @@ class BibliothequeGUI(QWidget):
         self.emp_livre_combo = QComboBox()
         form_layout.addWidget(self.emp_livre_combo, 1, 1)
 
-        btn_emprunter = QPushButton("📤 Emprunter Livre")
+        btn_emprunter = QPushButton("Emprunter Livre")
         btn_emprunter.clicked.connect(self.creer_emprunt)
         form_layout.addWidget(btn_emprunter, 2, 0, 1, 2)
 
@@ -427,7 +427,7 @@ class BibliothequeGUI(QWidget):
         self.ret_emprunt_combo = QComboBox()
         retour_layout.addWidget(self.ret_emprunt_combo, 0, 1)
 
-        btn_retourner = QPushButton("📥 Retourner Livre")
+        btn_retourner = QPushButton("Retourner Livre")
         btn_retourner.clicked.connect(self.retourner_livre)
         retour_layout.addWidget(btn_retourner, 1, 0, 1, 2)
 
@@ -535,11 +535,11 @@ class BibliothequeGUI(QWidget):
             # Statut
             if emp.est_actif():
                 if emp.est_en_retard():
-                    statut = f"⚠️ RETARD ({emp.jours_retard()} j)"
+                    statut = f"️RETARD ({emp.jours_retard()} j)"
                 else:
-                    statut = "✅ En cours"
+                    statut = "En cours"
             else:
-                statut = "✔️ Retourné"
+                statut = "Retourné"
             self.emprunts_table.setItem(i, 4, QTableWidgetItem(statut))
 
     # ========== Onglet Statistiques ==========
@@ -555,7 +555,7 @@ class BibliothequeGUI(QWidget):
         self.stats_text.setStyleSheet("font-size: 14px; padding: 10px;")
         layout.addWidget(self.stats_text)
 
-        btn_actualiser_stats = QPushButton("🔄 Actualiser les statistiques")
+        btn_actualiser_stats = QPushButton("Actualiser les statistiques")
         btn_actualiser_stats.clicked.connect(self.actualiser_statistiques)
         layout.addWidget(btn_actualiser_stats)
 
@@ -568,21 +568,21 @@ class BibliothequeGUI(QWidget):
         stats = self.bibliotheque.get_statistiques()
 
         text = f"""
-        📊 STATISTIQUES DE LA BIBLIOTHÈQUE
+        STATISTIQUES DE LA BIBLIOTHÈQUE
         ═══════════════════════════════════════
 
-        📚 DOCUMENTS
+        DOCUMENTS
         ─────────────────
         • Total de documents : {stats['total_documents']}
         • Livres : {stats['total_livres']}
         • Livres disponibles : {stats['livres_disponibles']}
         • Livres empruntés : {stats['livres_empruntes']}
 
-        👥 ADHÉRENTS
+        ADHÉRENTS
         ─────────────────
         • Total d'adhérents : {stats['total_adherents']}
 
-        📋 EMPRUNTS
+        EMPRUNTS
         ─────────────────
         • Total d'emprunts (historique) : {stats['total_emprunts']}
         • Emprunts actifs : {stats['emprunts_actifs']}
@@ -592,7 +592,7 @@ class BibliothequeGUI(QWidget):
         # Ajouter liste des retards
         retards = self.bibliotheque.get_emprunts_en_retard()
         if retards:
-            text += "\n\n⚠️  EMPRUNTS EN RETARD\n─────────────────\n"
+            text += "\n\n EMPRUNTS EN RETARD\n─────────────────\n"
             for emp in retards:
                 text += f"• {emp.livre.titre} - {emp.adherent.prenom} {emp.adherent.nom} "
                 text += f"({emp.jours_retard()} jours de retard)\n"
