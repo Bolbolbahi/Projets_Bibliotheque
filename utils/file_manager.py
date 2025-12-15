@@ -1,7 +1,5 @@
 """
 Module de gestion des fichiers CSV pour la bibliothèque
-Auteur: Votre Nom
-Date: 2024
 """
 
 import os

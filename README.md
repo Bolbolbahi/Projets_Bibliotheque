@@ -6,29 +6,6 @@ Le nouveau projet de programmation orientée objet
 bibliotheque/
 ├── README.md
 ├── LICENSE
-├── main.py                 # Point d'entrée de l'application
-├── classes/
-│   ├── __init__.py
-│   ├── document.py         # Classe Document et ses sous-classes
-│   ├── adherent.py         # Classe Adherent
-│   ├── emprunt.py          # Classe Emprunt
-│   └── bibliotheque.py     # Classe Bibliotheque
-├── gui/
-│   ├── __init__.py
-│   └── interface.py        # Interface graphique PyQt6
-├── data/
-│   ├── Adherents.txt
-│   ├── Emprunts.txt
-│   └── Biblio.txt
-└── utils/
-    ├── __init__.py
-    └── file_manager.py     # Gestion des fichiers CSV
-
-	 Structure du projet
-
-bibliotheque/
-├── README.md
-├── LICENSE
 ├── requirements.txt
 ├── main.py                 # Point d'entrée
 ├── classes/

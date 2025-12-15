@@ -1,7 +1,5 @@
 """
 Interface graphique PyQt6 pour le système de gestion de bibliothèque
-Auteur: Votre Nom
-Date: 2024
 """
 
 from PyQt6.QtWidgets import (QApplication, QWidget, QLabel, QPushButton,
